@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import random
 import re
 
 
@@ -114,6 +115,7 @@ if __name__ == '__main__':
     df_final = clean_dataframe(df_final)
     df_final.to_csv("./data/data_prompts.csv", index=False)
     tuples_list = create_tuples_text(df_final)
+    random.shuffle(tuples_list)
 
     content = (instruction + "\n\n" + str(tuples_list[:total_messages]) +  "\n\n" + prompt_engineering)
 
