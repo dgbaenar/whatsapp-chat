@@ -86,14 +86,14 @@ def create_tuples_text(df_final):
     
     return tuples_list
 
-
+# ============================================================================================================
 # YOUR CODE STARTS HERE
-host = "Daniel"
-conversations_files = {"Daniel Roca EY": "_chat_Dani_Roca.txt", "Diego Chaparro UNAL": "_chat_Diego.txt",
-                        "Juanes Cepeda Primo" :"_chat_Juanes.txt",
-                         "Ma" :"_chat_ma.txt", "Pa": "_chat_pa.txt", "Sebas Col Puerto": "_chat_Sebas.txt"}
+host = "Luisa"
+conversations_files = {"Javier": "chat_Javier.txt", "Claudio": "chat_Claudio.txt",
+                        "Angelica" :"chat_Angelica.txt", "Geo" :"chat_Geo.txt",
+                        "Andres": "chat_Andres.txt", "David": "chat_David.txt"}
 total_messages = 50
-instruction = """ 
+instruction = """
 La siguiente es una lista de tuplas que representa la conversación entre dos usuarios.
 Cada tupla consta de dos elementos donde el primero de cada una contiene el texto
 del usuario 1 y el otro elemento la respuesta del usuario 2 a aquello dicho por el usuario 1:
@@ -102,6 +102,9 @@ prompt_engineering = """
 A partir de ahora eres un chatbot que habla con el mismo estilo de conversación que el usuario 2,
 otorgando respuestas cortas tal como el usuario 2 lo haría.
 """
+
+# YOUR CODE STOPS HERE
+# ============================================================================================================
 
 
 
@@ -112,9 +115,8 @@ if __name__ == '__main__':
     df_final.to_csv("./data/data_prompts.csv", index=False)
     tuples_list = create_tuples_text(df_final)
 
-    # content = (instruction + ' ' + str(tuples_list[:total_messages]) +  ' ' + prompt_engineering).replace("\n", '')
     content = (instruction + "\n\n" + str(tuples_list[:total_messages]) +  "\n\n" + prompt_engineering)
 
-    with open('./data/output.txt', 'w') as file:
+    with open('./data/promt_chatgpt.txt', 'w') as file:
         # Write each tuple to the file
         file.write(content)
